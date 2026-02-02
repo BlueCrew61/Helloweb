@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas Animasi PPLG</title>
+    <style>
+     
+        #container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: rgb(0, 174, 255);
+            border: 1px solid #000;
+            margin-bottom: 10px;
+        }
+        
+        #animate {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: rgb(255, 0, 212);
+            
+            bottom: 0;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <input type="button" onclick="play()" value="Play">
+    <input type="button" onclick="stop()" value="Stop">
+
+    <div id="container">
+        <div id="animate"></div>
+    </div>
+
+    <script>
+        var id = null; 
+        var pos = 0;  
+        var elem = document.getElementById("animate");
+
+        function play() {
+            
+            if (id !== null) return; 
+            
+            id = setInterval(frame, 5);
+        }
+
+        function frame() {
+            if (pos >= 350) {
+                clearInterval(id);
+                id = null;
+            } else {
+                pos++;
+                
+                elem.style.bottom = pos + "px";
+                elem.style.right = pos + "px";
+            }
+        }
+
+        function stop() {
+            if (id !== null) {          
+             clearInterval(id);
+                id = null; 
+            } else {
+                play();
+            }
+        }
+    </script>
+
+</body>
+</html>
